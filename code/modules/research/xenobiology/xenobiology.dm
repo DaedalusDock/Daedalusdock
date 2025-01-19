@@ -9,7 +9,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 0
 	throw_range = 6
-	grind_results = list()
+	grind_results = list(/datum/reagent/toxin/slimejelly = 20)
 	var/Uses = 1 ///uses before it goes inert
 	var/qdel_timer = null ///deletion timer, for delayed reactions
 	var/effectmod ///Which type of crossbred
@@ -39,10 +39,6 @@
 	. = ..()
 	create_reagents(100, INJECTABLE | DRAWABLE)
 
-/obj/item/slime_extract/on_grind()
-	. = ..()
-	if(Uses)
-		grind_results[/datum/reagent/toxin/slimejelly] = 20
 
 /**
 * Effect when activated by a Luminescent.

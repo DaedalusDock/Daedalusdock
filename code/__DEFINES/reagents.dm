@@ -104,6 +104,14 @@
 ////Used to force an equlibrium to end a reaction in reaction_step() (i.e. in a reaction_step() proc return END_REACTION to end it)
 #define END_REACTION "end_reaction"
 
+//flags used by holder.dm to locate an reagent
+///Direct type
+#define REAGENT_STRICT_TYPE 1
+///Parent type but not sub types for e.g. if param is obj/item it will look for obj/item/stack but not obj/item/stack/sheet
+#define REAGENT_PARENT_TYPE 2
+///same as istype() check
+#define REAGENT_SUB_TYPE 3
+
 /// Helper for converting realtime seconds into reagent cycles.
 #define SECONDS_TO_REAGENT_CYCLES(seconds) round(seconds / (/datum/controller/subsystem/mobs::wait / 10))
 

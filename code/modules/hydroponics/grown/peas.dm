@@ -13,7 +13,7 @@
 	growing_icon = 'icons/obj/hydroponics/growing_vegetables.dmi'
 	icon_grow = "peas-grow"
 	icon_dead = "peas-dead"
-	genes = list(/datum/plant_gene/trait/repeated_harvest)
+	genes = list(/datum/plant_gene/product_trait/repeated_harvest)
 	mutatelist = list(/obj/item/seeds/peas/laugh)
 	reagents_add = list (/datum/reagent/consumable/nutriment/vitamin = 0.1, /datum/reagent/consumable/nutriment = 0.05, /datum/reagent/water = 0.05)
 
@@ -42,11 +42,11 @@
 	growthstages = 3
 	icon_grow = "laughpeas-grow"
 	icon_dead = "laughpeas-dead"
-	genes = list (/datum/plant_gene/trait/repeated_harvest, /datum/plant_gene/trait/glow/purple, /datum/plant_gene/trait/plant_laughter)
+	genes = list (/datum/plant_gene/product_trait/repeated_harvest, /datum/plant_gene/product_trait/glow/purple, /datum/plant_gene/product_trait/plant_laughter)
 	mutatelist = list (/obj/item/seeds/peas/laugh/peace)
 	reagents_add = list (/datum/reagent/consumable/laughter = 0.05, /datum/reagent/consumable/sugar = 0.05, /datum/reagent/consumable/nutriment = 0.07)
 	rarity = 25 //It actually might make Central Command Officials loosen up a smidge, eh?
-	graft_gene = /datum/plant_gene/trait/plant_laughter
+	graft_gene = /datum/plant_gene/product_trait/plant_laughter
 
 /obj/item/food/grown/laugh
 	seed = /obj/item/seeds/peas/laugh
@@ -75,10 +75,10 @@
 	growthstages = 3
 	icon_grow = "worldpeas-grow"
 	icon_dead = "worldpeas-dead"
-	genes = list (/datum/plant_gene/trait/glow/blue)
+	genes = list (/datum/plant_gene/product_trait/glow/blue)
 	reagents_add = list (/datum/reagent/pax = 0.1, /datum/reagent/consumable/nutriment = 0.15)
 	rarity = 50 // This absolutely will make even the most hardened Syndicate Operators relax.
-	graft_gene = /datum/plant_gene/trait/glow/blue
+	graft_gene = /datum/plant_gene/product_trait/glow/blue
 	mutatelist = null
 
 /obj/item/food/grown/peace

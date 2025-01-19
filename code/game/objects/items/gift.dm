@@ -76,7 +76,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/toy/beach_ball/holoball,
 		/obj/item/banhammer,
 		/obj/item/food/grown/ambrosia/deus,
-		/obj/item/food/grown/ambrosia/vulgaris,
+		/obj/item/food/grown/ambrosia,
 		/obj/item/paicard,
 		/obj/item/instrument/violin,
 		/obj/item/instrument/guitar,

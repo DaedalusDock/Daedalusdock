@@ -32,6 +32,8 @@ GLOBAL_VAR_INIT(running_create_and_destroy, FALSE)
 		/obj/merge_conflict_marker,
 		// Haha, no
 		/obj/item/hand_item/grab,
+		// Base seed type is abstract
+		/obj/item/seeds,
 	)
 	//Say it with me now, type template
 	ignore += typesof(/obj/effect/mapping_helpers)

@@ -72,7 +72,7 @@
 	name = "Dank pizza"
 	reqs = list(
 		/obj/item/food/flatdough = 1,
-		/obj/item/food/grown/ambrosia/vulgaris = 3,
+		/obj/item/food/grown/ambrosia = 3,
 		/obj/item/food/cheese/wedge = 1,
 		/obj/item/food/grown/tomato = 1
 	)

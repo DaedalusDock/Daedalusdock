@@ -441,7 +441,6 @@
 		/datum/design/plant_analyzer,
 		/datum/design/shovel,
 		/datum/design/spade,
-		/datum/design/secateurs,
 		/datum/design/blood_filter,
 		/datum/design/scalpel,
 		/datum/design/circular_saw,

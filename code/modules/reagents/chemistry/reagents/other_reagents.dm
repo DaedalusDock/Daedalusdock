@@ -81,13 +81,6 @@
 #undef WATER_TO_WET_STACKS_FACTOR_TOUCH
 #undef WATER_TO_WET_STACKS_FACTOR_VAPOR
 
-///For weird backwards situations where water manages to get added to trays nutrients, as opposed to being snowflaked away like usual.
-/datum/reagent/water/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray)
-	if(chems.has_reagent(src.type, 1))
-		mytray.adjust_waterlevel(round(chems.get_reagent_amount(src.type) * 1))
-		//You don't belong in this world, monster!
-		chems.remove_reagent(/datum/reagent/water, chems.get_reagent_amount(src.type))
-
 /datum/reagent/water/holywater
 	name = "Holy Water"
 	description = "Water blessed by some deity."
@@ -101,13 +94,11 @@
 	ingest_met = INFINITY
 	metabolization_rate = 1
 
-	// Holy water. Mostly the same as water, it also heals the plant a little with the power of the spirits. Also ALSO increases instability.
-/datum/reagent/water/holywater/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray)
-	if(chems.has_reagent(type, 1))
-		mytray.adjust_waterlevel(round(chems.get_reagent_amount(type) * 1))
-		mytray.adjust_plant_health(round(chems.get_reagent_amount(type) * 0.1))
-		if(myseed)
-			myseed.adjust_instability(round(chems.get_reagent_amount(type) * 0.15))
+// Holy water. Mostly the same as water, it also heals the plant a little with the power of the spirits. Also ALSO increases instability.
+/datum/reagent/water/holywater/on_hydroponics_apply(datum/plant_tick/plant_tick, datum/reagents/chems, volume, obj/machinery/hydroponics/mytray, mob/user)
+	if(volume >= 1)
+		plant_tick.plant_health_delta += 0.2
+		plant_tick.mutation_power += 0.1
 
 /datum/reagent/water/holywater/on_mob_metabolize(mob/living/carbon/C, class)
 	..()
@@ -202,12 +193,6 @@
 	glass_desc = "Are you sure this is tomato juice?"
 	shot_glass_icon_state = "shotglassred"
 	penetrates_skin = NONE
-
-	// FEED ME
-/datum/reagent/blood/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray)
-	. = ..()
-	if(chems.has_reagent(type, 1))
-		mytray.adjust_pestlevel(rand(2,3))
 
 /datum/reagent/blood/expose_mob(mob/living/exposed_mob, exposed_temperature, reac_volume, methods, show_message, touch_protection)
 	. = ..()
@@ -418,12 +403,14 @@
 	tox_prob = 5
 
 
-/datum/reagent/plantnutriment/eznutriment/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray)
-	. = ..()
-	if(myseed && chems.has_reagent(src.type, 1))
-		myseed.adjust_instability(0.2)
-		myseed.adjust_potency(round(chems.get_reagent_amount(src.type) * 0.3))
-		myseed.adjust_yield(round(chems.get_reagent_amount(src.type) * 0.1))
+/datum/reagent/plantnutriment/eznutriment/on_hydroponics_apply(datum/plant_tick/plant_tick, datum/reagents/chems, volume, obj/machinery/hydroponics/mytray, mob/user)
+	if(volume >= 1)
+		plant_tick.potency_mod += 0.5
+		plant_tick.plant_growth_delta += 2.5
+		#ifndef UNIT_TESTS
+		plant_tick.mutation_power += 0.1
+		#endif
+		plant_tick.yield_mod += 0.2
 
 /datum/reagent/plantnutriment/left4zednutriment
 	name = "Left 4 Zed"
@@ -432,11 +419,10 @@
 	tox_prob = 13
 
 
-/datum/reagent/plantnutriment/left4zednutriment/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray)
-	. = ..()
-	if(myseed && chems.has_reagent(src.type, 1))
-		mytray.adjust_plant_health(round(chems.get_reagent_amount(src.type) * 0.1))
-		myseed.adjust_instability(round(chems.get_reagent_amount(src.type) * 0.2))
+/datum/reagent/plantnutriment/left4zednutriment/on_hydroponics_apply(datum/plant_tick/plant_tick, datum/reagents/chems, volume, obj/machinery/hydroponics/mytray, mob/user)
+	if(volume >= 1)
+		plant_tick.plant_health_delta += 1
+		plant_tick.mutation_power += 0.8
 
 /datum/reagent/plantnutriment/robustharvestnutriment
 	name = "Robust Harvest"
@@ -445,12 +431,11 @@
 	tox_prob = 8
 
 
-/datum/reagent/plantnutriment/robustharvestnutriment/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray)
-	. = ..()
-	if(myseed && chems.has_reagent(src.type, 1))
-		myseed.adjust_instability(-0.25)
-		myseed.adjust_potency(round(chems.get_reagent_amount(src.type) * 0.1))
-		myseed.adjust_yield(round(chems.get_reagent_amount(src.type) * 0.2))
+/datum/reagent/plantnutriment/robustharvestnutriment/on_hydroponics_apply(datum/plant_tick/plant_tick, datum/reagents/chems, volume, obj/machinery/hydroponics/mytray, mob/user)
+	if(volume >= 1)
+		plant_tick.mutation_power -= 0.25
+		plant_tick.potency_mod += 0.1
+		plant_tick.yield_mod += 0.1
 
 /datum/reagent/plantnutriment/endurogrow
 	name = "Enduro Grow"
@@ -459,12 +444,11 @@
 	tox_prob = 8
 
 
-/datum/reagent/plantnutriment/endurogrow/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray)
-	. = ..()
-	if(myseed && chems.has_reagent(src.type, 1))
-		myseed.adjust_potency(-round(chems.get_reagent_amount(src.type) * 0.1))
-		myseed.adjust_yield(-round(chems.get_reagent_amount(src.type) * 0.075))
-		myseed.adjust_endurance(round(chems.get_reagent_amount(src.type) * 0.35))
+/datum/reagent/plantnutriment/endurogrow/on_hydroponics_apply(datum/plant_tick/plant_tick, datum/reagents/chems, volume, obj/machinery/hydroponics/mytray, mob/user)
+	if(volume >= 1)
+		plant_tick.endurance_mod += 0.35
+		plant_tick.potency_mod -= 0.15
+		plant_tick.yield_mod -= 0.15
 
 /datum/reagent/plantnutriment/liquidearthquake
 	name = "Liquid Earthquake"
@@ -473,12 +457,9 @@
 	tox_prob = 13
 
 
-/datum/reagent/plantnutriment/liquidearthquake/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray)
-	. = ..()
-	if(myseed && chems.has_reagent(src.type, 1))
-		myseed.adjust_weed_rate(round(chems.get_reagent_amount(src.type) * 0.1))
-		myseed.adjust_weed_chance(round(chems.get_reagent_amount(src.type) * 0.3))
-		myseed.adjust_production(-round(chems.get_reagent_amount(src.type) * 0.075))
+/datum/reagent/plantnutriment/liquidearthquake/on_hydroponics_apply(datum/plant_tick/plant_tick, datum/reagents/chems, volume, obj/machinery/hydroponics/mytray, mob/user)
+	if(volume >= 1)
+		plant_tick.production_mod -= 0.2
 
 // Bee chemicals
 
@@ -677,14 +658,10 @@
 
 
 // This is more bad ass, and pests get hurt by the corrosive nature of it, not the plant. The new trade off is it culls stability.
-/datum/reagent/diethylamine/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)
+/datum/reagent/diethylamine/on_hydroponics_apply(datum/plant_tick/plant_tick, datum/reagents/chems, volume, obj/machinery/hydroponics/mytray, mob/user)
 	. = ..()
-	if(chems.has_reagent(src.type, 1))
-		mytray.adjust_plant_health(round(chems.get_reagent_amount(src.type) * 1))
-		mytray.adjust_pestlevel(-rand(1,2))
-		if(myseed)
-			myseed.adjust_yield(round(chems.get_reagent_amount(src.type) * 1))
-			myseed.adjust_instability(-round(chems.get_reagent_amount(src.type) * 1))
+	if(volume >= 1)
+		plant_tick.plant_growth_delta += 1.2
 
 /datum/reagent/pax
 	name = "Pax 400"
@@ -960,14 +937,10 @@
 	C.adjustFireLoss((ispodperson(C) ? -1 : 1) * removed, FALSE)
 	return TRUE
 
-/datum/reagent/brimdust/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)
-	. = ..()
-	if(chems.has_reagent(src.type, 1))
-		mytray.adjust_weedlevel(-1)
-		mytray.adjust_pestlevel(-1)
-		mytray.adjust_plant_health(round(chems.get_reagent_amount(src.type) * 1))
-		if(myseed)
-			myseed.adjust_potency(round(chems.get_reagent_amount(src.type) * 0.5))
+/datum/reagent/brimdust/on_hydroponics_apply(datum/plant_tick/plant_tick, datum/reagents/chems, volume, obj/machinery/hydroponics/mytray, mob/user)
+	if(volume >= 1)
+		plant_tick.potency_mod += 0.5
+		plant_tick.plant_health_delta += 0.5
 
 /datum/reagent/spider_extract
 	name = "Spider Extract"
@@ -990,14 +963,18 @@
 
 
 // Saltpetre is used for gardening IRL, to simplify highly, it speeds up growth and strengthens plants
-/datum/reagent/saltpetre/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)
+/datum/reagent/saltpetre/on_hydroponics_apply(datum/plant_tick/plant_tick, datum/reagents/chems, volume, obj/machinery/hydroponics/mytray, mob/user)
+	if(volume >= 1)
+		plant_tick.plant_growth_delta += 2.5
+		plant_tick.potency_mod += 0.5
+
+		if(mytray.growing.gene_holder.harvest_yield > 1)
+			plant_tick.yield_mod -= 0.25
+
+/datum/reagent/saltpetre/infuse_plant(datum/plant/plant_datum, datum/plant_gene_holder/plant_dna, list/damage_ref)
 	. = ..()
-	if(chems.has_reagent(src.type, 1))
-		var/salt = chems.get_reagent_amount(src.type)
-		mytray.adjust_plant_health(round(salt * 0.18))
-		if(myseed)
-			myseed.adjust_production(-round(salt/10)-prob(salt%10))
-			myseed.adjust_potency(round(salt*1))
+	plant_dna.potency += rand(2, 8)
+	plant_dna.harvest_yield += rand(0, 2)
 
 /datum/reagent/cordiolis_hepatico
 	name = "Cordiolis Hepatico"

@@ -167,17 +167,6 @@
 	result = /obj/item/food/pie/cocolavatart
 	subcategory = CAT_PIE
 
-/datum/crafting_recipe/food/blumpkinpie
-	name = "Blumpkin pie"
-	reqs = list(
-		/datum/reagent/consumable/milk = 5,
-		/datum/reagent/consumable/sugar = 5,
-		/obj/item/food/pie/plain = 1,
-		/obj/item/food/grown/pumpkin/blumpkin = 1
-	)
-	result = /obj/item/food/pie/blumpkinpie
-	subcategory = CAT_PIE
-
 /datum/crafting_recipe/food/dulcedebatata
 	name = "Dulce de batata"
 	reqs = list(

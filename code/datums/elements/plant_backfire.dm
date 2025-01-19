@@ -101,7 +101,7 @@
  *
  * returns FALSE if none of the checks are successful.
  */
-/datum/element/plant_backfire/proc/plant_safety_check(obj/item/plant, mob/living/carbon/user)
+/datum/element/plant_backfire/proc/plant_safety_check(obj/item/product, mob/living/carbon/user)
 	if(!istype(user))
 		return TRUE
 
@@ -112,10 +112,10 @@
 		if(HAS_TRAIT(user, checked_trait))
 			return TRUE
 
-	var/obj/item/seeds/our_seed = plant.get_plant_seed()
-	if(our_seed)
+	var/datum/plant/our_plant = product.get_plant_datum()
+	if(our_plant)
 		for(var/checked_gene in extra_genes)
-			if(!our_seed.get_gene(checked_gene))
+			if(!our_plant.gene_holder.has_active_gene_of_type(checked_gene))
 				return TRUE
 
 	for(var/obj/item/clothing/worn_item in user.get_equipped_items())

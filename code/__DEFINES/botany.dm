@@ -36,12 +36,10 @@
 #define FLORA_GUN_MIN_ENDURANCE 20
 
 /// -- Flags for genes --
-/// Plant genes that can be removed via gene shears.
-#define PLANT_GENE_REMOVABLE (1<<0)
-/// Plant genes that can be mutated randomly in strange seeds / due to high instability.
+/// Gene is not passed on via splicing.
+#define PLANT_GENE_UNSPLICABLE (1<<0)
+/// Gene can be obtained via random seed.
 #define PLANT_GENE_MUTATABLE (1<<1)
-/// Plant genes that can be graftable. Used in formatting text, as they need to be set to be graftable anyways.
-#define PLANT_GENE_GRAFTABLE (1<<2)
 
 /// -- Flags for seeds. --
 /// Allows a plant to wild mutate (mutate on haravest) at a certain instability.

@@ -1,59 +1,49 @@
 // Starthistle
+/datum/plant/starthistle
+	species = "starthistle"
+	name = "starthistle"
+
+	growthstages = 3
+	growing_icon = 'icons/obj/hydroponics/growing_flowers.dmi'
+
+	seed_path = /obj/item/seeds/starthistle
+
+	innate_genes = list(/datum/plant_gene/product_trait/plant_type/weed_hardy)
+	possible_mutations = list(/datum/plant_mutation/starthistle_galaxy)
+
 /obj/item/seeds/starthistle
 	name = "pack of starthistle seeds"
 	desc = "A robust species of weed that often springs up in-between the cracks of spaceship parking lots."
 	icon_state = "seed-starthistle"
-	species = "starthistle"
-	plantname = "Starthistle"
-	lifespan = 70
-	endurance = 50 // damm pesky weeds
-	maturation = 5
-	production = 1
-	yield = 2
-	potency = 10
-	instability = 35
-	growthstages = 3
-	growing_icon = 'icons/obj/hydroponics/growing_flowers.dmi'
-	genes = list(/datum/plant_gene/trait/plant_type/weed_hardy)
-	mutatelist = list(/obj/item/seeds/galaxythistle)
-	graft_gene = /datum/plant_gene/trait/plant_type/weed_hardy
 
-/obj/item/seeds/starthistle/harvest(mob/user)
-	var/obj/machinery/hydroponics/parent = loc
-	var/seed_count = yield
-	if(prob(getYield() * 20))
-		seed_count++
-		var/output_loc = parent.Adjacent(user) ? user.loc : parent.loc
-		for(var/i in 1 to seed_count)
-			var/obj/item/seeds/starthistle/harvestseeds = Copy()
-			harvestseeds.forceMove(output_loc)
-
-	parent.update_tray(user, seed_count)
+	plant_type = /datum/plant/starthistle
 
 //Galaxy Thistle
+/datum/plant_mutation/starthistle_galaxy
+	plant_type = /datum/plant/galaxythistle
+
+/datum/plant/galaxythistle
+	species = "galaxythistle"
+	name = "galaxythistle"
+
+	growthstages = 3
+	growing_icon = 'icons/obj/hydroponics/growing_flowers.dmi'
+
+	seed_path = /obj/item/seeds/galaxythistle
+	product_path = /obj/item/food/grown/galaxythistle
+
+	reagents_per_potency = list(/datum/reagent/consumable/nutriment = 0.05, /datum/reagent/medicine/peridaxon = 0.1)
+	possible_mutations = null
+
 /obj/item/seeds/galaxythistle
 	name = "pack of galaxythistle seeds"
 	desc = "An impressive species of weed that is thought to have evolved from the simple milk thistle. Contains flavolignans that can help repair a damaged organs."
 	icon_state = "seed-galaxythistle"
-	species = "galaxythistle"
-	plantname = "Galaxythistle"
-	product = /obj/item/food/grown/galaxythistle
-	lifespan = 70
-	endurance = 40
-	maturation = 3
-	production = 2
-	yield = 2
-	potency = 25
-	instability = 35
-	growthstages = 3
-	growing_icon = 'icons/obj/hydroponics/growing_flowers.dmi'
-	genes = list(/datum/plant_gene/trait/plant_type/weed_hardy, /datum/plant_gene/trait/invasive/galaxythistle)
-	mutatelist = null
-	reagents_add = list(/datum/reagent/consumable/nutriment = 0.05, /datum/reagent/medicine/peridaxon = 0.1)
-	graft_gene = /datum/plant_gene/trait/invasive
+
+	plant_type = /datum/plant/galaxythistle
 
 /obj/item/food/grown/galaxythistle
-	seed = /obj/item/seeds/galaxythistle
+	plant_datum = /datum/plant/galaxythistle
 	name = "galaxythistle flower head"
 	desc = "This spiny cluster of florets reminds you of the highlands."
 	icon_state = "galaxythistle"

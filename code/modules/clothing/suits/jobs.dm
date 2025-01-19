@@ -10,7 +10,16 @@
 	inhand_icon_state = "apron"
 	blood_overlay_type = "armor"
 	body_parts_covered = CHEST|GROIN
-	allowed = list(/obj/item/reagent_containers/spray/plantbgone, /obj/item/plant_analyzer, /obj/item/seeds, /obj/item/reagent_containers/glass/bottle, /obj/item/reagent_containers/glass/beaker, /obj/item/cultivator, /obj/item/reagent_containers/spray/pestspray, /obj/item/hatchet, /obj/item/storage/bag/plants, /obj/item/graft, /obj/item/secateurs, /obj/item/geneshears)
+	allowed = list(
+		/obj/item/reagent_containers/spray/plantbgone,
+		/obj/item/plant_analyzer,
+		/obj/item/seeds,
+		/obj/item/reagent_containers/glass/bottle,
+		/obj/item/reagent_containers/glass/beaker,
+		/obj/item/cultivator,
+		/obj/item/hatchet,
+		/obj/item/storage/bag/plants,
+	)
 
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION | CLOTHING_TESHARI_VARIATION | CLOTHING_VOX_VARIATION
 

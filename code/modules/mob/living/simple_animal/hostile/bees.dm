@@ -7,7 +7,6 @@
 #define BEE_DEFAULT_COLOUR "#e5e500" //the colour we make the stripes of the bee if our reagent has no colour (or we have no reagent)
 
 #define BEE_POLLINATE_YIELD_CHANCE 33
-#define BEE_POLLINATE_PEST_CHANCE 33
 #define BEE_POLLINATE_POTENCY_CHANCE 50
 
 /mob/living/simple_animal/hostile/bee
@@ -157,7 +156,7 @@
 		return !H.bee_friendly()
 	if(istype(A, /obj/machinery/hydroponics))
 		var/obj/machinery/hydroponics/Hydro = A
-		if(Hydro.myseed && Hydro.plant_status != HYDROTRAY_PLANT_DEAD && !Hydro.recent_bee_visit)
+		if(Hydro.growing && Hydro.growing.plant_status != HYDROTRAY_PLANT_DEAD && !Hydro.recent_bee_visit)
 			wanted_objects |= hydroponicstypecache //so we only hunt them while they're alive/seeded/not visisted
 			return TRUE
 	return FALSE
@@ -195,7 +194,7 @@
 		generate_bee_visuals()
 
 /mob/living/simple_animal/hostile/bee/proc/pollinate(obj/machinery/hydroponics/Hydro)
-	if(!istype(Hydro) || !Hydro.myseed || Hydro.plant_status == HYDROTRAY_PLANT_DEAD || Hydro.recent_bee_visit)
+	if(!istype(Hydro) || !Hydro.growing || Hydro.growing.plant_status == HYDROTRAY_PLANT_DEAD || Hydro.recent_bee_visit)
 		LoseTarget()
 		return
 
@@ -205,15 +204,13 @@
 	addtimer(VARSET_CALLBACK(Hydro, recent_bee_visit, FALSE), BEE_TRAY_RECENT_VISIT)
 
 	var/growth = health //Health also means how many bees are in the swarm, roughly.
+
 	//better healthier plants!
-	Hydro.adjust_plant_health(growth*0.5)
-	if(prob(BEE_POLLINATE_PEST_CHANCE))
-		Hydro.adjust_pestlevel(-10)
+	Hydro.current_tick.plant_health_delta += 10
 	if(prob(BEE_POLLINATE_YIELD_CHANCE))
-		Hydro.myseed.adjust_yield(1)
-		Hydro.yieldmod = 2
+		Hydro.current_tick.yield_mod++
 	if(prob(BEE_POLLINATE_POTENCY_CHANCE))
-		Hydro.myseed.adjust_potency(1)
+		Hydro.current_tick.potency_mod++
 
 	if(beehome)
 		beehome.bee_resources = min(beehome.bee_resources + growth, 100)

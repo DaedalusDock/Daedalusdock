@@ -42,16 +42,6 @@
 	category = list(DCAT_CONSTRUCTION)
 	mapload_design_flags = DESIGN_FAB_ENGINEERING
 
-/datum/design/geneshears
-	name = "Botanogenetic Plant Shears"
-	desc = "A high tech, high fidelity pair of plant shears, capable of cutting genetic traits out of a plant."
-	id = "gene_shears"
-	build_path = /obj/item/geneshears
-	build_type = FABRICATOR
-	materials = list(/datum/material/iron=4000, /datum/material/uranium=1500, /datum/material/silver=500)
-	category = list(DCAT_BOTANICAL)
-	mapload_design_flags = DESIGN_FAB_SERVICE | DESIGN_FAB_OMNI
-
 /datum/design/wirebrush
 	name = "Wirebrush"
 	desc = "A tool to remove rust from walls."

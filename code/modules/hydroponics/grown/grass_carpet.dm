@@ -15,7 +15,7 @@
 	growthstages = 2
 	icon_grow = "grass-grow"
 	icon_dead = "grass-dead"
-	genes = list(/datum/plant_gene/trait/repeated_harvest)
+	genes = list(/datum/plant_gene/product_trait/repeated_harvest)
 	mutatelist = list(/obj/item/seeds/grass/carpet, /obj/item/seeds/grass/fairy)
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.02, /datum/reagent/hydrogen = 0.05)
 
@@ -31,11 +31,11 @@
 
 /obj/item/food/grown/grass/attack_self(mob/user)
 	to_chat(user, span_notice("You prepare the astroturf."))
-	var/grassAmt = 1 + round(seed.potency * tile_coefficient) // The grass we're holding
+	var/grassAmt = 1 + round(cached_potency * tile_coefficient) // The grass we're holding
 	for(var/obj/item/food/grown/grass/G in user.loc) // The grass on the floor
 		if(G.type != type)
 			continue
-		grassAmt += 1 + round(G.seed.potency * tile_coefficient)
+		grassAmt += 1 + round(G.cached_potency * tile_coefficient)
 		qdel(G)
 	new stacktype(user.drop_location(), grassAmt)
 	qdel(src)
@@ -50,9 +50,9 @@
 	product = /obj/item/food/grown/grass/fairy
 	icon_grow = "fairygrass-grow"
 	icon_dead = "fairygrass-dead"
-	genes = list(/datum/plant_gene/trait/repeated_harvest, /datum/plant_gene/trait/glow/blue)
+	genes = list(/datum/plant_gene/product_trait/repeated_harvest, /datum/plant_gene/product_trait/glow/blue)
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.02, /datum/reagent/hydrogen = 0.05, /datum/reagent/drug/space_drugs = 0.15)
-	graft_gene = /datum/plant_gene/trait/glow/blue
+	graft_gene = /datum/plant_gene/product_trait/glow/blue
 	mutatelist = null
 
 /obj/item/food/grown/grass/fairy

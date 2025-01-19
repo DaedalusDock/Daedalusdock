@@ -13,7 +13,6 @@
 	desc = "Start with a log."
 	item_types = list(/obj/item/grown/log)
 	blacklist_item_types = list(
-		/obj/item/grown/log/steel,
 		/obj/item/grown/log/bamboo,
 	)
 
@@ -28,7 +27,7 @@
 	item_types = list(
 		/obj/item/food/grown/tobacco,
 		/obj/item/food/grown/tea,
-		/obj/item/food/grown/ambrosia/vulgaris,
+		/obj/item/food/grown/ambrosia,
 		/obj/item/food/grown/ambrosia/deus,
 		/obj/item/food/grown/wheat,
 	)

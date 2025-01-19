@@ -28,7 +28,8 @@
 	. = 0
 	for(var/T in subtypesof(/obj/item/seeds)) //put a cache if it's used anywhere else
 		var/obj/item/seeds/S = T
-		if(initial(S.rarity) > 0)
+		var/datum/plant/P = S.plant_type
+		if(initial(P.rarity) > 0)
 			.++
 
 /datum/station_goal/dna_vault/get_report()

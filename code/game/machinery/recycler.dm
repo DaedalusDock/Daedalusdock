@@ -172,9 +172,10 @@
 	var/obj/item/grown/log/L = I
 	if(istype(L))
 		var/seed_modifier = 0
-		if(L.seed)
-			seed_modifier = round(L.seed.potency / 25)
+		if(L.plant_datum)
+			seed_modifier = round(L.cached_potency / 25)
 		new L.plank_type(loc, 1 + seed_modifier)
+
 	else
 		var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 		var/material_amount = materials.get_item_material_amount(I, BREAKDOWN_FLAGS_RECYCLER)
@@ -182,6 +183,7 @@
 			return
 		materials.insert_item(I, material_amount, multiplier = (amount_produced / 100), breakdown_flags=BREAKDOWN_FLAGS_RECYCLER)
 		materials.retrieve_all()
+
 	qdel(I)
 
 

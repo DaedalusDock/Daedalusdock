@@ -392,8 +392,7 @@
 		shroom.add_atom_colour("#823abb", TEMPORARY_COLOUR_PRIORITY)
 		new /obj/effect/temp_visual/revenant(shroom.loc)
 		QDEL_IN(shroom, 10)
+
 	for(var/obj/machinery/hydroponics/tray in victim)
 		new /obj/effect/temp_visual/revenant(tray.loc)
-		tray.set_pestlevel(rand(8, 10))
-		tray.set_weedlevel(rand(8, 10))
-		tray.set_toxic(rand(45, 55))
+		tray.current_tick?.tox_damage += rand(40, 60)

@@ -84,7 +84,7 @@
 	if(!istype(I, /obj/item/food/grown/banana))
 		return
 	var/obj/item/food/grown/banana/banana = I
-	atom_integrity += min(banana.seed.potency, max_integrity-atom_integrity)
+	atom_integrity += min(banana.cached_potency, max_integrity-atom_integrity)
 	to_chat(user, span_danger("You use the [banana] to repair the [src]!"))
 	qdel(banana)
 

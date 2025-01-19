@@ -20,10 +20,10 @@
 	potency = 15
 	instability = 30
 	growthstages = 4
-	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism)
+	genes = list(/datum/plant_gene/product_trait/plant_type/fungal_metabolism)
 	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
 	reagents_add = list(/datum/reagent/medicine/morphine = 0.35, /datum/reagent/medicine/dylovene = 0.35, /datum/reagent/consumable/nutriment = 0)
-	graft_gene = /datum/plant_gene/trait/plant_type/fungal_metabolism
+	graft_gene = /datum/plant_gene/product_trait/plant_type/fungal_metabolism
 
 /obj/item/food/grown/mushroom/reishi
 	seed = /obj/item/seeds/reishi
@@ -46,11 +46,11 @@
 	yield = 4
 	instability = 30
 	growthstages = 3
-	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism)
+	genes = list(/datum/plant_gene/product_trait/plant_type/fungal_metabolism)
 	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
 	mutatelist = list(/obj/item/seeds/angel)
 	reagents_add = list(/datum/reagent/drug/mushroomhallucinogen = 0.04, /datum/reagent/toxin/amatoxin = 0.35, /datum/reagent/consumable/nutriment = 0, /datum/reagent/growthserum = 0.1)
-	graft_gene = /datum/plant_gene/trait/plant_type/fungal_metabolism
+	graft_gene = /datum/plant_gene/product_trait/plant_type/fungal_metabolism
 
 /obj/item/food/grown/mushroom/amanita
 	seed = /obj/item/seeds/amanita
@@ -73,11 +73,11 @@
 	yield = 2
 	potency = 35
 	growthstages = 3
-	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism)
+	genes = list(/datum/plant_gene/product_trait/plant_type/fungal_metabolism)
 	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
 	reagents_add = list(/datum/reagent/drug/mushroomhallucinogen = 0.04, /datum/reagent/toxin/amatoxin = 0.1, /datum/reagent/consumable/nutriment = 0, /datum/reagent/toxin/amanitin = 0.2)
 	rarity = 30
-	graft_gene = /datum/plant_gene/trait/plant_type/fungal_metabolism
+	graft_gene = /datum/plant_gene/product_trait/plant_type/fungal_metabolism
 
 /obj/item/food/grown/mushroom/angel
 	seed = /obj/item/seeds/angel
@@ -100,10 +100,10 @@
 	potency = 15
 	instability = 10
 	growthstages = 3
-	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism)
+	genes = list(/datum/plant_gene/product_trait/plant_type/fungal_metabolism)
 	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
 	reagents_add = list(/datum/reagent/drug/mushroomhallucinogen = 0.25, /datum/reagent/consumable/nutriment = 0.02)
-	graft_gene = /datum/plant_gene/trait/plant_type/fungal_metabolism
+	graft_gene = /datum/plant_gene/product_trait/plant_type/fungal_metabolism
 
 /obj/item/food/grown/mushroom/libertycap
 	seed = /obj/item/seeds/liberty
@@ -125,11 +125,11 @@
 	yield = 4
 	potency = 15
 	growthstages = 3
-	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism)
+	genes = list(/datum/plant_gene/product_trait/plant_type/fungal_metabolism)
 	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
 	mutatelist = list(/obj/item/seeds/plump/walkingmushroom)
 	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
-	graft_gene = /datum/plant_gene/trait/plant_type/fungal_metabolism
+	graft_gene = /datum/plant_gene/product_trait/plant_type/fungal_metabolism
 
 /obj/item/food/grown/mushroom/plumphelmet
 	seed = /obj/item/seeds/plump
@@ -150,12 +150,12 @@
 	endurance = 30
 	maturation = 5
 	yield = 1
-	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism, /datum/plant_gene/trait/mob_transformation/shroom)
+	genes = list(/datum/plant_gene/product_trait/plant_type/fungal_metabolism, /datum/plant_gene/product_trait/mob_transformation/shroom)
 	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
 	mutatelist = null
 	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.05, /datum/reagent/consumable/nutriment = 0.15)
 	rarity = 30
-	graft_gene = /datum/plant_gene/trait/eyes
+	graft_gene = /datum/plant_gene/product_trait/eyes
 
 /obj/item/food/grown/mushroom/walkingmushroom
 	seed = /obj/item/seeds/plump/walkingmushroom
@@ -180,11 +180,11 @@
 	potency = 15
 	instability = 20
 	growthstages = 3
-	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism)
+	genes = list(/datum/plant_gene/product_trait/plant_type/fungal_metabolism)
 	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1)
 	mutatelist = list(/obj/item/seeds/chanter/jupitercup)
-	graft_gene = /datum/plant_gene/trait/plant_type/fungal_metabolism
+	graft_gene = /datum/plant_gene/product_trait/plant_type/fungal_metabolism
 
 /obj/item/food/grown/mushroom/chanterelle
 	seed = /obj/item/seeds/chanter
@@ -205,11 +205,11 @@
 	endurance = 8
 	yield = 4
 	growthstages = 2
-	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism, /datum/plant_gene/reagent/preset/liquidelectricity, /datum/plant_gene/trait/carnivory/jupitercup)
+	genes = list(/datum/plant_gene/product_trait/plant_type/fungal_metabolism, /datum/plant_gene/reagent/preset/liquidelectricity, /datum/plant_gene/product_trait/carnivory/jupitercup)
 	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1)
 	mutatelist = null
-	graft_gene = /datum/plant_gene/trait/carnivory
+	graft_gene = /datum/plant_gene/product_trait/carnivory
 
 /obj/item/food/grown/mushroom/jupitercup
 	seed = /obj/item/seeds/chanter/jupitercup
@@ -234,11 +234,11 @@
 	instability = 20
 	growthstages = 4
 	rarity = 20
-	genes = list(/datum/plant_gene/trait/glow, /datum/plant_gene/trait/plant_type/fungal_metabolism)
+	genes = list(/datum/plant_gene/product_trait/glow, /datum/plant_gene/product_trait/plant_type/fungal_metabolism)
 	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
 	mutatelist = list(/obj/item/seeds/glowshroom/glowcap, /obj/item/seeds/glowshroom/shadowshroom)
 	reagents_add = list(/datum/reagent/uranium/radium = 0.1, /datum/reagent/phosphorus = 0.1, /datum/reagent/consumable/nutriment = 0.04)
-	graft_gene = /datum/plant_gene/trait/glow
+	graft_gene = /datum/plant_gene/product_trait/glow
 
 /obj/item/food/grown/mushroom/glowshroom
 	seed = /obj/item/seeds/glowshroom
@@ -281,11 +281,11 @@
 	icon_harvest = "glowcap-harvest"
 	plantname = "Glowcaps"
 	product = /obj/item/food/grown/mushroom/glowshroom/glowcap
-	genes = list(/datum/plant_gene/trait/glow/red, /datum/plant_gene/trait/cell_charge, /datum/plant_gene/trait/plant_type/fungal_metabolism)
+	genes = list(/datum/plant_gene/product_trait/glow/red, /datum/plant_gene/product_trait/cell_charge, /datum/plant_gene/product_trait/plant_type/fungal_metabolism)
 	mutatelist = null
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.04)
 	rarity = 30
-	graft_gene = /datum/plant_gene/trait/cell_charge
+	graft_gene = /datum/plant_gene/product_trait/cell_charge
 
 /obj/item/food/grown/mushroom/glowshroom/glowcap
 	seed = /obj/item/seeds/glowshroom/glowcap
@@ -306,11 +306,11 @@
 	icon_dead = "shadowshroom-dead"
 	plantname = "Shadowshrooms"
 	product = /obj/item/food/grown/mushroom/glowshroom/shadowshroom
-	genes = list(/datum/plant_gene/trait/glow/shadow, /datum/plant_gene/trait/plant_type/fungal_metabolism)
+	genes = list(/datum/plant_gene/product_trait/glow/shadow, /datum/plant_gene/product_trait/plant_type/fungal_metabolism)
 	mutatelist = null
 	reagents_add = list(/datum/reagent/uranium/radium = 0.2, /datum/reagent/consumable/nutriment = 0.04)
 	rarity = 30
-	graft_gene = /datum/plant_gene/trait/glow/shadow
+	graft_gene = /datum/plant_gene/product_trait/glow/shadow
 
 /obj/item/food/grown/mushroom/glowshroom/shadowshroom
 	seed = /obj/item/seeds/glowshroom/shadowshroom
@@ -342,10 +342,10 @@
 	instability = 65
 	growthstages = 3
 	product = /obj/item/food/grown/mushroom/odious_puffball
-	genes = list(/datum/plant_gene/trait/smoke, /datum/plant_gene/trait/plant_type/fungal_metabolism, /datum/plant_gene/trait/squash)
+	genes = list(/datum/plant_gene/product_trait/smoke, /datum/plant_gene/product_trait/plant_type/fungal_metabolism, /datum/plant_gene/product_trait/squash)
 	reagents_add = list(/datum/reagent/toxin/spore = 0.2, /datum/reagent/consumable/nutriment = 0.04)
 	rarity = 35
-	graft_gene = /datum/plant_gene/trait/smoke
+	graft_gene = /datum/plant_gene/product_trait/smoke
 
 /obj/item/food/grown/mushroom/odious_puffball
 	seed = /obj/item/seeds/odious_puffball

@@ -7,7 +7,7 @@
 	species = "sugarcane"
 	plantname = "Sugarcane"
 	product = /obj/item/food/grown/sugarcane
-	genes = list(/datum/plant_gene/trait/repeated_harvest)
+	genes = list(/datum/plant_gene/product_trait/repeated_harvest)
 	lifespan = 60
 	endurance = 50
 	maturation = 3
@@ -43,7 +43,7 @@
 	growthstages = 3
 	growing_icon = 'icons/obj/hydroponics/growing.dmi'
 	icon_dead = "bamboo-dead"
-	genes = list(/datum/plant_gene/trait/repeated_harvest)
+	genes = list(/datum/plant_gene/product_trait/repeated_harvest)
 	mutatelist = null
 
 /obj/item/grown/log/bamboo

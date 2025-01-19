@@ -75,7 +75,6 @@
 	reqs = list(
 		/obj/item/reagent_containers/glass/bowl = 1,
 		/obj/item/food/meat/cutlet = 2,
-		/obj/item/food/grown/icepepper = 1,
 		/obj/item/food/grown/tomato = 1
 	)
 	result = /obj/item/food/soup/coldchili

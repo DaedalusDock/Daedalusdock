@@ -1198,13 +1198,71 @@ DEFINE_INTERACTABLE(/obj/item)
 
 /obj/item/proc/grind_requirements(obj/machinery/reagentgrinder/R) //Used to check for extra requirements for grinding an object
 	return TRUE
+///Grind item, adding grind_results to item's reagents and transfering to target_holder if specified
+/obj/item/proc/grind(datum/reagents/target_holder, mob/user, atom/movable/grinder = loc)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
+	SEND_SIGNAL(src, COMSIG_ITEM_PRE_GRIND)
+
+	. = FALSE
+	if(!can_be_ground() || target_holder.holder_full())
+		return
+
+	return do_grind(target_holder, user)
 
 ///Called BEFORE the object is ground up - use this to change grind results based on conditions. Use "return -1" to prevent the grinding from occurring
-/obj/item/proc/on_grind()
-	return SEND_SIGNAL(src, COMSIG_ITEM_ON_GRIND)
+/obj/item/proc/can_be_ground()
+	if(!length(grind_results))
+		return FALSE
 
-/obj/item/proc/on_juice()
-	return SEND_SIGNAL(src, COMSIG_ITEM_ON_JUICE)
+	return TRUE
+
+///Subtypes override his proc for custom grinding
+/obj/item/proc/do_grind(datum/reagents/target_holder, mob/user)
+	PROTECTED_PROC(TRUE)
+
+	. = FALSE
+	if(length(grind_results))
+		target_holder.add_reagent_list(grind_results)
+		. = TRUE
+
+	if(reagents?.trans_to(target_holder, reagents.total_volume, transfered_by = user))
+		. = TRUE
+
+///Juice item, converting nutriments into juice_typepath and transfering to target_holder if specified
+/obj/item/proc/juice(datum/reagents/target_holder, mob/user, atom/movable/juicer = loc)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
+	SEND_SIGNAL(src, COMSIG_ITEM_PRE_JUICE)
+
+	. = FALSE
+	if(!can_be_juiced() || !reagents?.total_volume)
+		return
+
+	return do_juice(target_holder, user)
+
+
+/obj/item/proc/can_be_juiced()
+	if(!length(juice_results))
+		return FALSE
+
+	return TRUE
+
+/// Subtypes override his proc for custom juicing
+/obj/item/proc/do_juice(datum/reagents/target_holder, mob/user)
+	PROTECTED_PROC(TRUE)
+
+	. = FALSE
+
+	var/mult = round(1 / length(juice_results), CHEMICAL_QUANTISATION_LEVEL)
+
+	for(var/reagent_type in juice_results)
+		reagents.convert_reagent(/datum/reagent/consumable/nutriment, reagent_type, mult, include_source_subtypes = FALSE)
+		reagents.convert_reagent(/datum/reagent/consumable/nutriment/vitamin, reagent_type, mult, include_source_subtypes = FALSE)
+		. = TRUE
+
+	if(!QDELETED(target_holder))
+		reagents.trans_to(target_holder, reagents.total_volume, transfered_by = user)
 
 /obj/item/proc/damagetype2text()
 	. += list()

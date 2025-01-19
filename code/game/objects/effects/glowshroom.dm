@@ -29,6 +29,7 @@ GLOBAL_VAR_INIT(glowshrooms, 0)
 	var/idle_decay_max = 2
 	///Amount of percentage decay affects endurance.max_integrity =
 	var/endurance_decay_rate = 0.1
+
 	/// Internal seed of the glowshroom, stats are stored here
 	var/obj/item/seeds/myseed = /obj/item/seeds/glowshroom
 
@@ -75,15 +76,14 @@ GLOBAL_VAR_INIT(glowshrooms, 0)
 	else
 		myseed = new myseed(src)
 
-	modify_max_integrity(GLOWSHROOM_BASE_INTEGRITY + ((100 - GLOWSHROOM_BASE_INTEGRITY) / 100 * myseed.endurance)) //goes up to 100 with peak endurance
+	modify_max_integrity(GLOWSHROOM_BASE_INTEGRITY + ((100 - GLOWSHROOM_BASE_INTEGRITY) / 100 * myseed.plant_datum.get_effective_stat(PLANT_STAT_ENDURANCE))) //goes up to 100 with peak endurance
 
-	var/datum/plant_gene/trait/glow/our_glow_gene = myseed.get_gene(/datum/plant_gene/trait/glow)
-	if(ispath(our_glow_gene)) // Seeds were ported to initialize so their genes are still typepaths here, luckily their initializer is smart enough to handle us doing this
-		myseed.genes -= our_glow_gene
-		our_glow_gene = new our_glow_gene
-		myseed.genes += our_glow_gene
+	var/datum/plant_gene/product_trait/glow/our_glow_gene = myseed.plant_datum.gene_holder.has_active_gene_of_type(/datum/plant_gene/product_trait/glow)
+	var/potency = myseed.plant_datum.get_effective_stat(PLANT_STAT_POTENCY)
+
 	if(istype(our_glow_gene))
-		set_light(l_outer_range = our_glow_gene.glow_range(myseed), l_power = our_glow_gene.glow_power(myseed), l_color = our_glow_gene.glow_color)
+		set_light(l_outer_range = our_glow_gene.glow_range(potency), l_power = our_glow_gene.glow_power(potency), l_color = our_glow_gene.glow_color)
+
 	setDir(calc_dir())
 	base_icon_state = initial(icon_state)
 	if(!floor)
@@ -154,9 +154,9 @@ GLOBAL_VAR_INIT(glowshrooms, 0)
 	if(!possible_locs.len)
 		return
 
-	var/chance_generation = 100 * (NUM_E ** -((GLOWSHROOM_SPREAD_BASE_DIMINISH_FACTOR + GLOWSHROOM_SPREAD_DIMINISH_FACTOR_PER_GLOWSHROOM * GLOB.glowshrooms) / myseed.potency * (generation - 1))) //https://www.desmos.com/calculator/istvjvcelz
+	var/chance_generation = 100 * (NUM_E ** -((GLOWSHROOM_SPREAD_BASE_DIMINISH_FACTOR + GLOWSHROOM_SPREAD_DIMINISH_FACTOR_PER_GLOWSHROOM * GLOB.glowshrooms) / myseed.plant_datum.get_effective_stat(PLANT_STAT_POTENCY) * (generation - 1))) //https://www.desmos.com/calculator/istvjvcelz
 
-	for(var/i in 1 to myseed.yield)
+	for(var/i in 1 to myseed.plant_datum.get_effective_stat(PLANT_STAT_YIELD))
 		if(!prob(chance_generation))
 			continue
 		var/spreads_into_adjacent = prob(spread_into_adjacent_chance)
@@ -188,7 +188,9 @@ GLOBAL_VAR_INIT(glowshrooms, 0)
 		if(shroom_count >= place_count)
 			continue
 
-		var/obj/structure/glowshroom/child = new type(new_loc, myseed.Copy())
+		var/seed_type = myseed.plant_datum.seed_path
+		var/obj/item/seeds/seed_copy = new seed_type(null, myseed.plant_datum)
+		var/obj/structure/glowshroom/child = new type(new_loc, seed_copy)
 		child.generation = generation + 1
 
 /obj/structure/glowshroom/proc/calc_dir(turf/location = loc)
@@ -230,11 +232,11 @@ GLOBAL_VAR_INIT(glowshrooms, 0)
  * * amount - Amount of endurance to be reduced due to spread decay.
  */
 /obj/structure/glowshroom/proc/Decay(amount)
-	myseed.adjust_endurance(-amount * endurance_decay_rate)
+	myseed.plant_datum.base_endurance -= (amount * endurance_decay_rate)
 	take_damage(amount)
 	// take_damage could qdel our shroom, so check beforehand
-	// if our endurance dropped before the min plant endurance, then delete our shroom anyways
-	if (!QDELETED(src) && myseed.endurance <= MIN_PLANT_ENDURANCE)
+	// if our endurance dropped below the min plant endurance, then delete our shroom anyways
+	if (!QDELETED(src) && myseed.plant_datum.base_endurance <= MIN_PLANT_ENDURANCE)
 		qdel(src)
 
 /obj/structure/glowshroom/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
@@ -255,13 +257,13 @@ GLOBAL_VAR_INIT(glowshrooms, 0)
 /obj/structure/glowshroom/extreme/Initialize(mapload, obj/item/seeds/newseed)
 	. = ..()
 	if(generation == 1)
-		myseed.potency = 100
-		myseed.endurance = 100
-		myseed.yield = 10
+		myseed.plant_datum.base_potency = 100
+		myseed.plant_datum.base_endurance = 100
+		myseed.plant_datum.base_harvest_yield = 10
 
 /obj/structure/glowshroom/medium/Initialize(mapload, obj/item/seeds/newseed)
 	. = ..()
 	if(generation == 1)
-		myseed.potency = 50
-		myseed.endurance = 50
-		myseed.yield = 5
+		myseed.plant_datum.base_potency = 50
+		myseed.plant_datum.base_endurance = 50
+		myseed.plant_datum.base_harvest_yield = 5

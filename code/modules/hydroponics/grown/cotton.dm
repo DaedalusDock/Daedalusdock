@@ -36,7 +36,7 @@
 	user.show_message(span_notice("You pull some [cotton_name] out of the [name]!"), MSG_VISUAL)
 	var/seed_modifier = 0
 	if(seed)
-		seed_modifier = round(seed.potency / 25)
+		seed_modifier = round(cached_potency / 25)
 	var/amount = 1 + seed_modifier
 	var/obj/item/stack/cotton = new cotton_type(user.drop_location(), amount)
 	to_chat(user, span_notice("You pull [src] apart, salvaging [amount] [cotton.name]."))

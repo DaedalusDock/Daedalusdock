@@ -33,19 +33,6 @@
 	if(!proximity_flag || !target)
 		return
 
-	if((allowed_scans & DNA_PROBE_SCAN_PLANTS) && istype(target, /obj/machinery/hydroponics))
-		var/obj/machinery/hydroponics/hydro_tray = target
-		if(!hydro_tray.myseed)
-			return
-		if(stored_dna_plants[hydro_tray.myseed.type])
-			to_chat(user, span_notice("Plant data already present in local storage."))
-			return
-		if(hydro_tray.plant_status != HYDROTRAY_PLANT_HARVESTABLE) // So it's bit harder.
-			to_chat(user, span_alert("Plant needs to be ready to harvest to perform full data scan.")) //Because space dna is actually magic
-			return
-		stored_dna_plants[hydro_tray.myseed.type] = TRUE
-		to_chat(user, span_notice("Plant data added to local storage."))
-
 	if(allowed_scans & DNA_PROBE_SCAN_ANIMALS)
 		var/static/list/non_simple_animals = typecacheof(list(/mob/living/carbon/alien))
 		if(isanimal_or_basicmob(target) || is_type_in_typecache(target, non_simple_animals) || ismonkey(target))

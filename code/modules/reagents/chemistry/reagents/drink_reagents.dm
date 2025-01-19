@@ -206,12 +206,9 @@
 
 
 	// Milk is good for humans, but bad for plants. The sugars cannot be used by plants, and the milk fat harms growth. Not shrooms though. I can't deal with this now...
-/datum/reagent/consumable/milk/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)
-	. = ..()
-	if(chems.has_reagent(type, 1))
-		mytray.adjust_waterlevel(round(chems.get_reagent_amount(type) * 0.3))
-		if(myseed)
-			myseed.adjust_potency(-chems.get_reagent_amount(type) * 0.5)
+/datum/reagent/consumable/milk/on_hydroponics_apply(datum/plant_tick/plant_tick, datum/reagents/chems, volume, obj/machinery/hydroponics/mytray, mob/user)
+	if(volume >= 1)
+		plant_tick.potency_mod -= 0.2
 
 /datum/reagent/consumable/milk/affect_ingest(mob/living/carbon/C, removed)
 	if(C.getBruteLoss() && prob(20))
@@ -580,13 +577,11 @@
 
 
 
-	// A variety of nutrients are dissolved in club soda, without sugar.
-	// These nutrients include carbon, oxygen, hydrogen, phosphorous, potassium, sulfur and sodium, all of which are needed for healthy plant growth.
-/datum/reagent/consumable/sodawater/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)
-	. = ..()
-	if(chems.has_reagent(type, 1))
-		mytray.adjust_waterlevel(round(chems.get_reagent_amount(type) * 1))
-		mytray.adjust_plant_health(round(chems.get_reagent_amount(type) * 0.1))
+// A variety of nutrients are dissolved in club soda, without sugar.
+// These nutrients include carbon, oxygen, hydrogen, phosphorous, potassium, sulfur and sodium, all of which are needed for healthy plant growth.
+/datum/reagent/consumable/sodawater/on_hydroponics_apply(datum/plant_tick/plant_tick, datum/reagents/chems, volume, obj/machinery/hydroponics/mytray, mob/user)
+	if(volume >= 1)
+		plant_tick.plant_health_delta += 0.2
 
 /datum/reagent/consumable/sodawater/affect_ingest(mob/living/carbon/C, removed)
 	C.adjust_timed_status_effect(-10 SECONDS * removed, /datum/status_effect/dizziness)

@@ -13,9 +13,8 @@
 	potency = 20
 	instability = 30
 	growing_icon = 'icons/obj/hydroponics/growing_vegetables.dmi'
-	icon_grow = "chili-grow" // Uses one growth icons set for all the subtypes
 	icon_dead = "chili-dead" // Same for the dead icon
-	genes = list(/datum/plant_gene/trait/repeated_harvest)
+	genes = list(/datum/plant_gene/product_trait/repeated_harvest)
 	mutatelist = list(/obj/item/seeds/chili/ice, /obj/item/seeds/chili/ghost)
 	reagents_add = list(/datum/reagent/consumable/capsaicin = 0.25, /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.04)
 
@@ -40,10 +39,10 @@
 	maturation = 4
 	production = 4
 	rarity = 20
-	genes = list(/datum/plant_gene/trait/chem_cooling)
+	genes = list(/datum/plant_gene/product_trait/chem_cooling)
 	mutatelist = null
 	reagents_add = list(/datum/reagent/consumable/frostoil = 0.25, /datum/reagent/consumable/nutriment/vitamin = 0.02, /datum/reagent/consumable/nutriment = 0.02)
-	graft_gene = /datum/plant_gene/trait/chem_cooling
+	graft_gene = /datum/plant_gene/product_trait/chem_cooling
 
 /obj/item/food/grown/icepepper
 	seed = /obj/item/seeds/chili/ice
@@ -67,10 +66,10 @@
 	production = 10
 	yield = 3
 	rarity = 20
-	genes = list(/datum/plant_gene/trait/chem_heating, /datum/plant_gene/trait/backfire/chili_heat)
+	genes = list(/datum/plant_gene/product_trait/chem_heating, /datum/plant_gene/product_trait/backfire/chili_heat)
 	mutatelist = null
 	reagents_add = list(/datum/reagent/consumable/condensedcapsaicin = 0.3, /datum/reagent/consumable/capsaicin = 0.55, /datum/reagent/consumable/nutriment = 0.04)
-	graft_gene = /datum/plant_gene/trait/chem_heating
+	graft_gene = /datum/plant_gene/product_trait/chem_heating
 
 /obj/item/food/grown/ghost_chili
 	seed = /obj/item/seeds/chili/ghost
@@ -94,7 +93,7 @@
 	production = 10
 	yield = 3
 	rarity = 20
-	genes = list(/datum/plant_gene/trait/repeated_harvest)
+	genes = list(/datum/plant_gene/product_trait/repeated_harvest)
 	mutatelist = null
 	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.08, /datum/reagent/consumable/nutriment = 0.04)
 

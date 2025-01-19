@@ -12,7 +12,7 @@
 	growing_icon = 'icons/obj/hydroponics/growing.dmi'
 	icon_grow = "herbs-grow"
 	icon_dead = "herbs-dead"
-	genes = list(/datum/plant_gene/trait/repeated_harvest)
+	genes = list(/datum/plant_gene/product_trait/repeated_harvest)
 	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
 
 /obj/item/food/grown/herbs

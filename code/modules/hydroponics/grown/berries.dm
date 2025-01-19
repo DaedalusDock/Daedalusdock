@@ -14,7 +14,7 @@
 	growing_icon = 'icons/obj/hydroponics/growing_fruits.dmi'
 	icon_grow = "berry-grow" // Uses one growth icons set for all the subtypes
 	icon_dead = "berry-dead" // Same for the dead icon
-	genes = list(/datum/plant_gene/trait/repeated_harvest)
+	genes = list(/datum/plant_gene/product_trait/repeated_harvest)
 	mutatelist = list(/obj/item/seeds/berry/glow, /obj/item/seeds/berry/poison)
 	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
 
@@ -89,10 +89,10 @@
 	lifespan = 30
 	endurance = 25
 	mutatelist = null
-	genes = list(/datum/plant_gene/trait/glow/white, /datum/plant_gene/trait/repeated_harvest)
+	genes = list(/datum/plant_gene/product_trait/glow/white, /datum/plant_gene/product_trait/repeated_harvest)
 	reagents_add = list(/datum/reagent/uranium = 0.25, /datum/reagent/iodine = 0.2, /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
 	rarity = 20
-	graft_gene = /datum/plant_gene/trait/glow/white
+	graft_gene = /datum/plant_gene/product_trait/glow/white
 
 /obj/item/food/grown/berries/glow
 	seed = /obj/item/seeds/berry/glow
@@ -122,7 +122,7 @@
 	growing_icon = 'icons/obj/hydroponics/growing_fruits.dmi'
 	icon_grow = "grape-grow"
 	icon_dead = "grape-dead"
-	genes = list(/datum/plant_gene/trait/repeated_harvest)
+	genes = list(/datum/plant_gene/product_trait/repeated_harvest)
 	mutatelist = list(/obj/item/seeds/grape/green)
 	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1, /datum/reagent/consumable/sugar = 0.1)
 
@@ -175,7 +175,7 @@
 	growing_icon = 'icons/obj/hydroponics/growing_fruits.dmi'
 	icon_grow = "toechtauese-grow"
 	icon_dead = "toechtauese-dead"
-	genes = list(/datum/plant_gene/trait/repeated_harvest)
+	genes = list(/datum/plant_gene/product_trait/repeated_harvest)
 	reagents_add = list(/datum/reagent/consumable/toechtauese_juice = 0.1, /datum/reagent/toxin/itching_powder = 0.04)
 
 /obj/item/food/grown/toechtauese

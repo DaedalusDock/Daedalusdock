@@ -1113,7 +1113,6 @@
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "zq" = (
 /obj/structure/table/reinforced/rglass,
-/obj/item/food/grown/tomato/blue/bluespace,
 /turf/open/floor/glass,
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "zu" = (
@@ -2105,11 +2104,6 @@
 /obj/item/grown/bananapeel/bluespace,
 /turf/open/floor/glass,
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
-"Uc" = (
-/obj/structure/table/reinforced/rglass,
-/obj/item/food/grown/banana/bluespace,
-/turf/open/floor/glass,
-/area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "Ui" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/grimy,
@@ -2673,7 +2667,7 @@ Rj
 CO
 Rj
 Zc
-Uc
+yi
 Bo
 ch
 Ut

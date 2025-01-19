@@ -15,7 +15,7 @@
 	growing_icon = 'icons/obj/hydroponics/growing_fruits.dmi'
 	icon_grow = "cocoapod-grow"
 	icon_dead = "cocoapod-dead"
-	genes = list(/datum/plant_gene/trait/repeated_harvest)
+	genes = list(/datum/plant_gene/product_trait/repeated_harvest)
 	mutatelist = list(/obj/item/seeds/cocoapod/vanillapod, /obj/item/seeds/cocoapod/bungotree)
 	reagents_add = list(/datum/reagent/consumable/coco = 0.25, /datum/reagent/consumable/nutriment = 0.1)
 
@@ -37,7 +37,7 @@
 	species = "vanillapod"
 	plantname = "Vanilla Tree"
 	product = /obj/item/food/grown/vanillapod
-	genes = list(/datum/plant_gene/trait/repeated_harvest)
+	genes = list(/datum/plant_gene/product_trait/repeated_harvest)
 	mutatelist = null
 	reagents_add = list(/datum/reagent/consumable/vanilla = 0.25, /datum/reagent/consumable/nutriment = 0.1)
 
@@ -62,7 +62,7 @@
 	maturation = 4
 	yield = 3
 	production = 7
-	genes = list(/datum/plant_gene/trait/repeated_harvest)
+	genes = list(/datum/plant_gene/product_trait/repeated_harvest)
 	mutatelist = null
 	reagents_add = list(/datum/reagent/consumable/enzyme = 0.1, /datum/reagent/consumable/nutriment = 0.1)
 	growthstages = 4
@@ -98,5 +98,5 @@
 /obj/item/food/grown/bungopit/Initialize(mapload)
 	. =..()
 	reagents.clear_reagents()
-	reagents.add_reagent(/datum/reagent/toxin/bungotoxin, seed.potency * 0.10) //More than this will kill at too low potency
-	reagents.add_reagent(/datum/reagent/consumable/nutriment, seed.potency * 0.04)
+	reagents.add_reagent(/datum/reagent/toxin/bungotoxin, cached_potency * 0.10) //More than this will kill at too low potency
+	reagents.add_reagent(/datum/reagent/consumable/nutriment, cached_potency * 0.04)

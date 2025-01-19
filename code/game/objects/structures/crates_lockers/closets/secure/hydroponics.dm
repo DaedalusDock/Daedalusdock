@@ -10,4 +10,3 @@
 	new /obj/item/radio/headset/headset_srv(src)
 	new /obj/item/cultivator(src)
 	new /obj/item/hatchet(src)
-	new /obj/item/secateurs(src)

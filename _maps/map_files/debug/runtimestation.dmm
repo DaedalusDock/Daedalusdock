@@ -73,6 +73,11 @@
 "aw" = (
 /turf/open/floor/plating,
 /area/station/engineering/atmos)
+"ax" = (
+/obj/effect/landmark/start,
+/obj/machinery/light/floor/has_bulb,
+/turf/open/floor/iron,
+/area/station/commons/storage/primary)
 "aA" = (
 /turf/open/floor/iron,
 /area/station/engineering/main)
@@ -1961,6 +1966,10 @@
 /obj/structure/cable/smart_cable/color/yellow,
 /turf/open/floor/iron,
 /area/station/hallway/primary/central)
+"zX" = (
+/obj/machinery/hydroponics/constructable,
+/turf/open/floor/iron,
+/area/station/commons/storage/primary)
 "Ao" = (
 /obj/effect/turf_decal/plaque{
 	icon_state = "L9"
@@ -2367,6 +2376,10 @@
 /obj/machinery/chem_recipe_debug,
 /turf/open/floor/iron,
 /area/station/medical/chemistry)
+"Nd" = (
+/obj/machinery/vending/hydroseeds,
+/turf/open/floor/iron,
+/area/station/commons/storage/primary)
 "NN" = (
 /obj/structure/fans/tiny,
 /obj/structure/cable/smart_cable/color/yellow,
@@ -2575,6 +2588,10 @@
 	},
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
+"TR" = (
+/obj/machinery/vending/hydronutrients,
+/turf/open/floor/iron,
+/area/station/commons/storage/primary)
 "UI" = (
 /obj/machinery/door/airlock,
 /obj/structure/cable/smart_cable/color/yellow,
@@ -7581,7 +7598,7 @@ cS
 hf
 dr
 dJ
-dJ
+TR
 dJ
 dI
 dJ
@@ -7673,7 +7690,7 @@ Tg
 xN
 ds
 dJ
-dJ
+Nd
 dJ
 dI
 dJ
@@ -7766,8 +7783,8 @@ jm
 dt
 dJ
 dD
-dJ
-dI
+zX
+ax
 dJ
 XZ
 dJ

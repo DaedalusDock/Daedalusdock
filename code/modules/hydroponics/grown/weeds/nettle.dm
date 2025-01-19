@@ -1,38 +1,56 @@
+/datum/plant/nettle
+	species = "nettle"
+	name = "nettles"
+
+	growthstages = 5
+
+	seed_path = /obj/item/seeds/nettle
+	product_path = /obj/item/food/grown/nettle
+
+	innate_genes = list(
+		/datum/plant_gene/product_trait/plant_type/weed_hardy,
+		/datum/plant_gene/product_trait/attack/nettle_attack,
+		/datum/plant_gene/product_trait/backfire/nettle_burn
+	)
+
+	reagents_per_potency = list(/datum/reagent/toxin/acid = 0.5)
+
 /obj/item/seeds/nettle
 	name = "pack of nettle seeds"
 	desc = "These seeds grow into nettles."
 	icon_state = "seed-nettle"
-	species = "nettle"
-	plantname = "Nettles"
-	product = /obj/item/food/grown/nettle
-	lifespan = 30
-	endurance = 40 // tuff like a toiger
-	yield = 4
-	instability = 25
-	growthstages = 5
-	genes = list(/datum/plant_gene/trait/repeated_harvest, /datum/plant_gene/trait/plant_type/weed_hardy, /datum/plant_gene/trait/attack/nettle_attack, /datum/plant_gene/trait/backfire/nettle_burn)
-	mutatelist = list(/obj/item/seeds/nettle/death)
-	reagents_add = list(/datum/reagent/toxin/acid = 0.5)
-	graft_gene = /datum/plant_gene/trait/plant_type/weed_hardy
+
+	plant_type = /datum/plant/nettle
+
+/datum/plant_mutation/nettles_death
+	plant_type = /datum/plant/nettle/death
+
+/datum/plant/nettle/death
+	species = "deathnettle"
+	name = "death nettles"
+
+	seed_path = /obj/item/seeds/nettle/death
+	product_path = /obj/item/food/grown/nettle/death
+
+	innate_genes = list(
+		/datum/plant_gene/product_trait/plant_type/weed_hardy,
+		/datum/plant_gene/product_trait/stinging,
+		/datum/plant_gene/product_trait/attack/nettle_attack/death,
+		/datum/plant_gene/product_trait/backfire/nettle_burn/death
+	)
+
+	reagents_per_potency = list(/datum/reagent/toxin/acid/fluacid = 0.5, /datum/reagent/toxin/acid = 0.5)
+	rarity = 20
 
 /obj/item/seeds/nettle/death
 	name = "pack of death-nettle seeds"
 	desc = "These seeds grow into death-nettles."
 	icon_state = "seed-deathnettle"
-	species = "deathnettle"
-	plantname = "Death Nettles"
-	product = /obj/item/food/grown/nettle/death
-	endurance = 25
-	maturation = 8
-	yield = 2
-	genes = list(/datum/plant_gene/trait/repeated_harvest, /datum/plant_gene/trait/plant_type/weed_hardy, /datum/plant_gene/trait/stinging, /datum/plant_gene/trait/attack/nettle_attack/death, /datum/plant_gene/trait/backfire/nettle_burn/death)
-	mutatelist = null
-	reagents_add = list(/datum/reagent/toxin/acid/fluacid = 0.5, /datum/reagent/toxin/acid = 0.5)
-	rarity = 20
-	graft_gene = /datum/plant_gene/trait/stinging
+
+	plant_type = /datum/plant/nettle/death
 
 /obj/item/food/grown/nettle // "snack"
-	seed = /obj/item/seeds/nettle
+	plant_datum = /datum/plant/nettle
 	name = "\improper nettle"
 	desc = "It's probably <B>not</B> wise to touch it with bare hands..."
 	icon = 'icons/obj/items_and_weapons.dmi'
@@ -54,7 +72,7 @@
 	return (BRUTELOSS|TOXLOSS)
 
 /obj/item/food/grown/nettle/death
-	seed = /obj/item/seeds/nettle/death
+	plant_datum = /datum/plant/nettle/death
 	name = "\improper deathnettle"
 	desc = "The <span class='danger'>glowing</span> nettle incites <span class='boldannounce'>rage</span> in you just from looking at it!"
 	icon_state = "deathnettle"

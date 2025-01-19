@@ -1,11 +1,15 @@
 /// Unit test to ensure plants can't self-mutate into themselves.
 /datum/unit_test/hydroponics_self_mutation
+	name = "HYDROPONICS: Plants Shall Not Mutate Into Themselves"
 
 /datum/unit_test/hydroponics_self_mutation/Run()
-	var/list/all_seeds = subtypesof(/obj/item/seeds)
+	for(var/datum/plant/P as anything in subtypesof(/datum/plant))
+		if(isabstract(P))
+			continue
 
-	for(var/seed in all_seeds)
-		var/obj/item/seeds/instantiated_seed = new seed()
-		for(var/path in instantiated_seed.mutatelist)
-			TEST_ASSERT(!istype(instantiated_seed, path), "[instantiated_seed] - [instantiated_seed.type] is able to mutate into itself! Its mutatelist is not set correctly.")
-		qdel(instantiated_seed)
+		P = new P()
+		for(var/datum/plant_mutation/mutation as anything in P.possible_mutations)
+			if(mutation.plant_type == P.type)
+				TEST_FAIL("[P.type] has itself as a possible mutation.")
+
+		qdel(P)

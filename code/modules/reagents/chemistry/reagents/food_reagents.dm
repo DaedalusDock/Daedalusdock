@@ -35,10 +35,10 @@
 	var/brute_heal = 1
 	var/burn_heal = 0
 
-/datum/reagent/consumable/nutriment/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)
-	. = ..()
-	if(chems.has_reagent(type, 1))
-		mytray.adjust_plant_health(round(chems.get_reagent_amount(type) * 0.2))
+/datum/reagent/consumable/nutriment/on_hydroponics_apply(datum/plant_tick/plant_tick, datum/reagents/chems, volume, obj/machinery/hydroponics/mytray, mob/user)
+	if(volume >= 1)
+		plant_tick.plant_health_delta += 1
+		plant_tick.plant_growth_delta += 1
 
 /datum/reagent/consumable/nutriment/affect_ingest(mob/living/carbon/C, removed)
 	if(prob(60))
@@ -189,14 +189,6 @@
 	overdose_threshold = 200
 	taste_description = "sweetness"
 
-
-// Plants should not have sugar, they can't use it and it prevents them getting water/ nutients, it is good for mold though...
-/datum/reagent/consumable/sugar/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)
-	. = ..()
-	if(chems.has_reagent(type, 1))
-		mytray.adjust_weedlevel(rand(1,2))
-		mytray.adjust_pestlevel(rand(1,2))
-
 /datum/reagent/consumable/sugar/overdose_start(mob/living/carbon/C)
 	to_chat(C, span_userdanger("Your body quakes as you collapse to the ground!"))
 	C.AdjustSleeping(600)
@@ -215,10 +207,9 @@
 
 
 	// Compost for EVERYTHING
-/datum/reagent/consumable/virus_food/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)
-	. = ..()
-	if(chems.has_reagent(type, 1))
-		mytray.adjust_plant_health(-round(chems.get_reagent_amount(type) * 0.5))
+/datum/reagent/consumable/virus_food/on_hydroponics_apply(datum/plant_tick/plant_tick, datum/reagents/chems, volume, obj/machinery/hydroponics/mytray, mob/user)
+	if(volume >= 1)
+		plant_tick.plant_health_delta -= 0.2
 
 /datum/reagent/consumable/soysauce
 	name = "Soysauce"
@@ -576,15 +567,16 @@
 	ingest_met = 0.2
 	taste_description = "sweetness"
 
-	// On the other hand, honey has been known to carry pollen with it rarely. Can be used to take in a lot of plant qualities all at once, or harm the plant.
-/datum/reagent/consumable/honey/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)
-	. = ..()
-	if(chems.has_reagent(type, 1))
-		if(myseed && prob(20))
-			mytray.pollinate(1)
-		else
-			mytray.adjust_weedlevel(rand(1,2))
-			mytray.adjust_pestlevel(rand(1,2))
+#warn honey
+// 	// On the other hand, honey has been known to carry pollen with it rarely. Can be used to take in a lot of plant qualities all at once, or harm the plant.
+// /datum/reagent/consumable/honey/on_hydroponics_apply(datum/plant_tick/plant_tick, datum/reagents/chems, volume, obj/machinery/hydroponics/mytray, mob/user)
+// 	. = ..()
+// 	if(chems.has_reagent(type, 1))
+// 		if(myseed && prob(20))
+// 			mytray.pollinate(1)
+// 		else
+// 			mytray.adjust_weedlevel(rand(1,2))
+// 			mytray.adjust_pestlevel(rand(1,2))
 
 /datum/reagent/consumable/honey/affect_ingest(mob/living/carbon/C, removed)
 	holder.add_reagent(/datum/reagent/consumable/sugar, 3 * removed)

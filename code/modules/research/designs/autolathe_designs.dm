@@ -462,15 +462,6 @@
 	category = list(DCAT_MISC_TOOL, DCAT_BOTANICAL)
 	mapload_design_flags = DESIGN_FAB_SERVICE | DESIGN_FAB_OMNI
 
-/datum/design/secateurs
-	name = "Secateurs"
-	id = "secateurs"
-	build_type = AUTOLATHE | FABRICATOR
-	materials = list(/datum/material/iron = 4000)
-	build_path = /obj/item/secateurs
-	category = list(DCAT_BOTANICAL)
-	mapload_design_flags = DESIGN_FAB_SERVICE | DESIGN_FAB_OMNI
-
 /datum/design/blood_filter
 	name = "Blood Filter"
 	id = "blood_filter"

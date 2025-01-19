@@ -11,10 +11,10 @@
 	growing_icon = 'icons/obj/hydroponics/growing_fruits.dmi'
 	icon_grow = "tomato-grow"
 	icon_dead = "tomato-dead"
-	genes = list(/datum/plant_gene/trait/squash, /datum/plant_gene/trait/repeated_harvest)
+	genes = list(/datum/plant_gene/product_trait/squash, /datum/plant_gene/product_trait/repeated_harvest)
 	mutatelist = list(/obj/item/seeds/tomato/blue, /obj/item/seeds/tomato/blood, /obj/item/seeds/tomato/killer)
 	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
-	graft_gene = /datum/plant_gene/trait/squash
+	graft_gene = /datum/plant_gene/product_trait/squash
 
 /obj/item/food/grown/tomato
 	seed = /obj/item/seeds/tomato
@@ -61,10 +61,10 @@
 	yield = 2
 	icon_grow = "bluetomato-grow"
 	mutatelist = list(/obj/item/seeds/tomato/blue/bluespace)
-	genes = list(/datum/plant_gene/trait/slip, /datum/plant_gene/trait/repeated_harvest)
+	genes = list(/datum/plant_gene/product_trait/slip, /datum/plant_gene/product_trait/repeated_harvest)
 	reagents_add = list(/datum/reagent/lube = 0.2, /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
 	rarity = 20
-	graft_gene = /datum/plant_gene/trait/slip
+	graft_gene = /datum/plant_gene/product_trait/slip
 
 /obj/item/food/grown/tomato/blue
 	seed = /obj/item/seeds/tomato/blue
@@ -85,10 +85,10 @@
 	product = /obj/item/food/grown/tomato/blue/bluespace
 	yield = 2
 	mutatelist = null
-	genes = list(/datum/plant_gene/trait/squash, /datum/plant_gene/trait/slip, /datum/plant_gene/trait/teleport, /datum/plant_gene/trait/repeated_harvest, /datum/plant_gene/trait/backfire/bluespace)
+	genes = list(/datum/plant_gene/product_trait/squash, /datum/plant_gene/product_trait/slip, /datum/plant_gene/product_trait/teleport, /datum/plant_gene/product_trait/repeated_harvest, /datum/plant_gene/product_trait/backfire/bluespace)
 	reagents_add = list(/datum/reagent/lube = 0.2, /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
 	rarity = 50
-	graft_gene = /datum/plant_gene/trait/teleport
+	graft_gene = /datum/plant_gene/product_trait/teleport
 
 /obj/item/food/grown/tomato/blue/bluespace
 	seed = /obj/item/seeds/tomato/blue/bluespace
@@ -108,7 +108,7 @@
 	plantname = "Killer-Tomato Plants"
 	product = /obj/item/food/grown/tomato/killer
 	yield = 2
-	genes = list(/datum/plant_gene/trait/mob_transformation/tomato)
+	genes = list(/datum/plant_gene/product_trait/mob_transformation/tomato)
 	growthstages = 2
 	icon_grow = "killertomato-grow"
 	icon_harvest = "killertomato-harvest"

@@ -14,10 +14,10 @@
 	growthstages = 3
 	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
 	icon_dead = "towercap-dead"
-	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism)
+	genes = list(/datum/plant_gene/product_trait/plant_type/fungal_metabolism)
 	mutatelist = list(/obj/item/seeds/tower/steel)
 	reagents_add = list(/datum/reagent/cellulose = 0.05)
-	graft_gene = /datum/plant_gene/trait/plant_type/fungal_metabolism
+	graft_gene = /datum/plant_gene/product_trait/plant_type/fungal_metabolism
 
 /obj/item/seeds/tower/steel
 	name = "pack of steel-cap mycelium"
@@ -46,7 +46,7 @@
 	var/static/list/accepted = typecacheof(list(
 		/obj/item/food/grown/tobacco,
 		/obj/item/food/grown/tea,
-		/obj/item/food/grown/ambrosia/vulgaris,
+		/obj/item/food/grown/ambrosia,
 		/obj/item/food/grown/ambrosia/deus,
 		/obj/item/food/grown/wheat,
 	))
@@ -96,7 +96,7 @@
 /obj/item/grown/log/proc/get_plank_amount()
 	var/plank_amount = 1
 	if(seed)
-		plank_amount += round(seed.potency / 25)
+		plank_amount += round(cached_potency / 25)
 	return plank_amount
 
 /obj/item/grown/log/proc/CheckAccepted(obj/item/I)

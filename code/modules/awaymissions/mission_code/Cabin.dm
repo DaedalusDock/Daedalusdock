@@ -96,10 +96,10 @@
 /obj/machinery/recycler/lumbermill/recycle_item(obj/item/grown/log/L)
 	if(!istype(L))
 		return
-	else
-		var/potency = L.seed.potency
-		..()
-		new L.plank_type(src.loc, 1 + round(potency / 25))
+
+	var/potency = L.cached_potency
+	..()
+	new L.plank_type(src.loc, 1 + round(potency / 25))
 
 /*Cabin's forest. Removed in the new cabin map since it was buggy and I prefer manual placement.*/
 /datum/map_generator/snowy

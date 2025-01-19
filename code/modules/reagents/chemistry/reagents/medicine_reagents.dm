@@ -20,22 +20,10 @@
 	metabolization_rate = 1
 
 // The best stuff there is. For testing/debugging.
-/datum/reagent/medicine/adminordrazine/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)
-	. = ..()
-	if(chems.has_reagent(type, 1))
-		mytray.adjust_waterlevel(round(chems.get_reagent_amount(type) * 1))
-		mytray.adjust_plant_health(round(chems.get_reagent_amount(type) * 1))
-		mytray.adjust_pestlevel(-rand(1,5))
-		mytray.adjust_weedlevel(-rand(1,5))
-	if(chems.has_reagent(type, 3))
-		switch(rand(100))
-			if(51 to 100)
-				mytray.mutatespecie()
-			if(1 to 50)
-				mytray.mutateweed()
-			else
-				if(prob(20))
-					mytray.visible_message(span_warning("Nothing happens..."))
+/datum/reagent/medicine/adminordrazine/on_hydroponics_apply(datum/plant_tick/plant_tick, datum/reagents/chems, volume, obj/machinery/hydroponics/mytray, mob/user)
+	if(volume >= 1)
+		plant_tick.plant_health_delta += 2
+		plant_tick.plant_growth_delta += 2
 
 /datum/reagent/medicine/adminordrazine/affect_blood(mob/living/carbon/C, removed)
 	C.heal_bodypart_damage(2 * removed, 2 * removed, FALSE)
@@ -683,6 +671,26 @@
 	if(C.has_dna())
 		C.dna.remove_all_mutations(list(MUT_NORMAL, MUT_EXTRA), TRUE)
 
+/datum/reagent/medicine/infuse_plant(datum/plant/plant_datum, datum/plant_gene_holder/plant_dna, list/damage_ref)
+	. = ..()
+	if(plant_dna.endurance < 0)
+		plant_dna.endurance += 1
+
+	if(plant_dna.potency < 0)
+		plant_dna.potency += 1
+
+	if(plant_dna.harvest_amt < 0)
+		plant_dna.harvest_amt += 1
+
+	if(plant_dna.harvest_yield < 0)
+		plant_dna.harvest_yield += 1
+
+	if(plant_dna.maturation < 0)
+		plant_dna.maturation += 1
+
+	if(plant_dna.production < 0)
+		plant_dna.production += 1
+
 /datum/reagent/medicine/spaceacillin
 	name = "Spaceacillin"
 	description = "Spaceacillin will prevent a patient from conventionally spreading any diseases they are currently infected with. Also reduces infection in serious burns."
@@ -977,6 +985,13 @@
 
 	if(prob(3))
 		C.vomit(50, FALSE, FALSE, 1, purge_ratio = 0.2)
+
+/datum/reagent/medicine/activated_charcoal/on_hydroponics_apply(datum/plant_tick/plant_tick, datum/reagents/chems, volume, obj/machinery/hydroponics/mytray, mob/user)
+	for(var/datum/reagent/R in mytray.reagents.reagent_list)
+		if(R.type == type || !istype(R, /datum/reagent/water))
+			continue
+
+		mytray.reagents.remove_reagent(R.type, 2)
 
 /datum/reagent/medicine/adenosine
 	name = "Adenosine"

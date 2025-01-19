@@ -183,7 +183,7 @@
 	melee_damage_upper = 1
 	attack_verb_continuous = "cheers up"
 	attack_verb_simple = "cheer up"
-	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/human, /obj/item/soap, /obj/item/seeds/banana/bluespace)
+	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/human, /obj/item/soap)
 	attack_reagent = /datum/reagent/consumable/laughter
 
 /mob/living/simple_animal/hostile/retaliate/clown/fleshclown
@@ -445,7 +445,7 @@
 
 	else if(istype(eaten_atom, /obj/item/food/grown/banana))
 		var/obj/item/food/grown/banana/banana_morsel = eaten_atom
-		adjustBruteLoss(-banana_morsel.seed.potency * 0.25)
+		adjustBruteLoss(-banana_morsel.cached_potency * 0.25)
 		prank_pouch += banana_morsel.generate_trash(src)
 		qdel(eaten_atom)
 	else

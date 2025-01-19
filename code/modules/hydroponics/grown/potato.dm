@@ -14,10 +14,10 @@
 	growing_icon = 'icons/obj/hydroponics/growing_vegetables.dmi'
 	icon_grow = "potato-grow"
 	icon_dead = "potato-dead"
-	genes = list(/datum/plant_gene/trait/battery, /datum/plant_gene/trait/one_bite)
+	genes = list(/datum/plant_gene/product_trait/battery, /datum/plant_gene/product_trait/one_bite)
 	mutatelist = list(/obj/item/seeds/potato/sweet)
 	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
-	graft_gene = /datum/plant_gene/trait/battery
+	graft_gene = /datum/plant_gene/product_trait/battery
 
 /obj/item/food/grown/potato
 	seed = /obj/item/seeds/potato

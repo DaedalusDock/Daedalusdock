@@ -12,13 +12,13 @@
 		return 0
 	if(needs_discovery && !(S.type in discovered_plants))
 		return 0
-	return ..() * S.rarity // That's right, no bonus for potency. Send a crappy sample first to "show improvement" later.
+	return ..() * S.plant_datum.rarity // That's right, no bonus for potency. Send a crappy sample first to "show improvement" later.
 
 /datum/export/seed/sell_object(obj/O, datum/export_report/report, dry_run, apply_elastic)
 	. = ..()
 	if(. && !dry_run)
 		var/obj/item/seeds/S = O
-		discovered_plants[S.type] = S.potency
+		discovered_plants[S.type] = S.plant_datum.get_effective_stat(PLANT_STAT_POTENCY)
 
 
 /datum/export/seed/potency
@@ -33,6 +33,6 @@
 	if(!cost)
 		return 0
 
-	var/potDiff = (S.potency - discovered_plants[S.type])
+	var/potDiff = (S.plant_datum.get_effective_stat(PLANT_STAT_POTENCY) - discovered_plants[S.type])
 
 	return round(..() * potDiff)

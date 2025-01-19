@@ -15,17 +15,18 @@ GLOBAL_LIST_INIT(medicine_reagents, build_medicine_reagents())
 				.[reagent] = list()
 			.[reagent] += type
 		qdel(item)
+
 	//dang plant snowflake
-	for (var/type in subtypesof(/obj/item/seeds))
-		var/obj/item/seeds/item = new type()
-		for(var/datum/reagent/reagent as anything in item.reagents_add)
+	for (var/type in subtypesof(/datum/plant))
+		var/datum/plant/plant_datum = new type(empty = TRUE)
+		for(var/datum/reagent/reagent as anything in plant_datum.reagents_per_potency)
 			var/chem_flags = initial(reagent.chemical_flags)
 			if(!VALID_RANDOM_RECIPE_REAGENT(chem_flags))
 				continue
 			if (!.[reagent])
 				.[reagent] = list()
 			.[reagent] += type
-		qdel(item)
+		qdel(plant_datum)
 
 ///Just grab every craftable medicine you can think off
 /proc/build_medicine_reagents()

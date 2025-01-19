@@ -364,15 +364,14 @@
 			if((do_after(user, src, 25)) && grinded)
 				user.stamina.adjust(-40)
 				if(grinded.juice_results) //prioritize juicing
-					grinded.on_juice()
+					grinded.juice(reagents)
 					reagents.add_reagent_list(grinded.juice_results)
 					to_chat(user, span_notice("You juice [grinded] into a fine liquid."))
 					QDEL_NULL(grinded)
 					return
-				grinded.on_grind()
-				reagents.add_reagent_list(grinded.grind_results)
-				if(grinded.reagents) //food and pills
-					grinded.reagents.trans_to(src, grinded.reagents.total_volume, transfered_by = user)
+
+				grinded.grind(reagents)
+
 				to_chat(user, span_notice("You break [grinded] into powder."))
 				QDEL_NULL(grinded)
 				return

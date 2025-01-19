@@ -13,7 +13,7 @@
 	growing_icon = 'goon/icons/obj/hydroponics.dmi'
 	icon_grow = "cannabis-grow" // Uses one growth icons set for all the subtypes
 	icon_dead = "cannabis-dead" // Same for the dead icon
-	genes = list(/datum/plant_gene/trait/repeated_harvest)
+	genes = list(/datum/plant_gene/product_trait/repeated_harvest)
 	mutatelist = list(/obj/item/seeds/cannabis/rainbow,
 						/obj/item/seeds/cannabis/death,
 						/obj/item/seeds/cannabis/white,
@@ -63,7 +63,7 @@
 	species = "ocannabis"
 	plantname = "Omega Weed"
 	product = /obj/item/food/grown/cannabis/ultimate
-	genes = list(/datum/plant_gene/trait/repeated_harvest, /datum/plant_gene/trait/glow/green, /datum/plant_gene/trait/modified_volume/omega_weed)
+	genes = list(/datum/plant_gene/product_trait/repeated_harvest, /datum/plant_gene/product_trait/glow/green, /datum/plant_gene/product_trait/modified_volume/omega_weed)
 	mutatelist = null
 	reagents_add = list(/datum/reagent/drug/cannabis = 0.3,
 						/datum/reagent/toxin/mindbreaker = 0.3,
@@ -76,7 +76,7 @@
 						/datum/reagent/toxin/lipolicide = 0.15,
 						/datum/reagent/drug/nicotine = 0.1)
 	rarity = 69
-	graft_gene = /datum/plant_gene/trait/glow/green
+	graft_gene = /datum/plant_gene/product_trait/glow/green
 
 
 // ---------------------------------------------------------------

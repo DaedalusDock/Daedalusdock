@@ -11,7 +11,7 @@
 	instability = 20
 	growing_icon = 'icons/obj/hydroponics/growing_fruits.dmi'
 	icon_dead = "watermelon-dead"
-	genes = list(/datum/plant_gene/trait/repeated_harvest)
+	genes = list(/datum/plant_gene/product_trait/repeated_harvest)
 	mutatelist = list(/obj/item/seeds/watermelon/holy, /obj/item/seeds/watermelon/barrel)
 	reagents_add = list(/datum/reagent/water = 0.2, /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.2)
 
@@ -47,11 +47,11 @@
 	species = "holymelon"
 	plantname = "Holy Melon Vines"
 	product = /obj/item/food/grown/holymelon
-	genes = list(/datum/plant_gene/trait/glow/yellow, /datum/plant_gene/trait/anti_magic)
+	genes = list(/datum/plant_gene/product_trait/glow/yellow, /datum/plant_gene/product_trait/anti_magic)
 	mutatelist = null
 	reagents_add = list(/datum/reagent/water/holywater = 0.2, /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
 	rarity = 20
-	graft_gene = /datum/plant_gene/trait/glow/yellow
+	graft_gene = /datum/plant_gene/product_trait/glow/yellow
 
 /obj/item/food/grown/holymelon
 	seed = /obj/item/seeds/watermelon/holy
@@ -101,11 +101,11 @@
 	species = "barrelmelon"
 	plantname = "Barrel Melon Vines"
 	product = /obj/item/food/grown/barrelmelon
-	genes = list(/datum/plant_gene/trait/brewing)
+	genes = list(/datum/plant_gene/product_trait/brewing)
 	mutatelist = null
 	reagents_add = list(/datum/reagent/consumable/ethanol/ale = 0.2, /datum/reagent/consumable/nutriment = 0.1)
 	rarity = 10
-	graft_gene = /datum/plant_gene/trait/brewing
+	graft_gene = /datum/plant_gene/product_trait/brewing
 
 /// Barrel melon Fruit
 /obj/item/food/grown/barrelmelon

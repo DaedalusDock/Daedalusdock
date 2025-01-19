@@ -215,7 +215,7 @@
 	name = "Misklmæsch (Seed soup)"
 	reqs = list(
 		/obj/item/seeds/sunflower = 1,
-		/obj/item/seeds/poppy/lily = 1,
+		/obj/item/seeds/lily = 1,
 		/obj/item/seeds/ambrosia = 1,
 		/datum/reagent/water = 10,
 		/datum/reagent/consumable/vinegar = 5,

@@ -97,9 +97,9 @@
 	instability = 15
 	growing_icon = 'icons/obj/hydroponics/growing_vegetables.dmi'
 	icon_dead = "whitebeet-dead"
-	genes = list(/datum/plant_gene/trait/maxchem)
+	genes = list(/datum/plant_gene/product_trait/maxchem)
 	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.05, /datum/reagent/consumable/nutriment = 0.05)
-	graft_gene = /datum/plant_gene/trait/maxchem
+	graft_gene = /datum/plant_gene/product_trait/maxchem
 
 /obj/item/food/grown/redbeet
 	seed = /obj/item/seeds/redbeet
